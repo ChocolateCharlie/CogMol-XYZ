@@ -8,8 +8,15 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "file-tools.h"
+#include "global.h"
+
+#include "Molecule.h"
+
+// Define global variables
+std::vector<Molecule> g_molecules;
 
 /* ************************************************************************* */
 /*                            THE MAIN FUNCTION                              */
@@ -17,6 +24,7 @@
 
 int main(int argc, char *argv[]) {
 	// TODO: Greetings
+	// TODO: load atom's informations
 
 	// Read each file sequentialy
 	try {
@@ -27,10 +35,7 @@ int main(int argc, char *argv[]) {
 		for (int i = 1; i < argc; i++) {
 			try {
 				std::string arg_file = argv[i];
-				std::ifstream xyz_file = load_xyz_file(arg_file);
-				// TODO : do some computations here
-				// Close file
-				xyz_file.close();
+				load_xyz_file(arg_file);
 			}
 			catch(std::exception const &e) {
 				std::cerr << "CogMol-XYZ ERROR : " << e.what() << std::endl;
@@ -39,6 +44,11 @@ int main(int argc, char *argv[]) {
 	}
 	catch(std::exception const &e) {
 		std::cerr << "CogMol-XYZ ERROR : " << e.what() << std::endl;
+	}
+
+	// Print molecules on standard output
+	for (int i = 0; i < g_molecules.size(); i++) {
+		std::cout << g_molecules[i] << std::endl;
 	}
 
 	return(0);

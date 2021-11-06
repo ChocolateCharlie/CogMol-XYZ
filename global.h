@@ -1,24 +1,20 @@
 /* ************************************************************************* */
 /*                                                    THE COGMOL-XYZ PROJECT */
-/* file-tools.h                                                   FILE TOOLS */
+/* global.h                                                                  */
 /* By: ChocolateCharlie                                                      */
 /* Updated: 2021-11-06                                                       */
 /* ************************************************************************* */
 
-#ifndef FILE_TOOLS_H_INCLUDED
-#define FILE_TOOLS_H_INCLUDED
+#ifndef GLOBAL_H_INCLUDED
+#define GLOBAL_TOOLS_H_INCLUDED
 
-#include <fstream>
-#include <iostream>
-#include <string>
-
-#include "global.h"
+#include <vector>
 
 #include "Molecule.h"
 
-void load_file(const std::string &f, const std::string &ext);
-void load_xyz_file(const std::string &f);
-void read_xyz_file(std::ifstream &f);
+// Loaded molecules are stored in a global variable to allow access anywhere in
+// the code (TODO: evaluate the pros and cons of this approach).
+extern std::vector<Molecule> g_molecules;
 
-#endif // FILE_TOOLS_H_INCLUDED
+#endif // GLOBAL_H_INCLUDED
 
