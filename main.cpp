@@ -2,7 +2,7 @@
 /*                                                    THE COGMOL-XYZ PROJECT */
 /* main.cpp                                                                  */
 /* By: ChocolateCharlie                                                      */
-/* Updated: 2021-10-30                                                       */
+/* Updated: 2021-11-06                                                       */
 /* ************************************************************************* */
 
 #include <fstream>
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 			try {
 				std::string arg_file = argv[i];
 				// Ensure the file has a correct extension
-				if (arg_file.size() < 5 || !arg_file.compare(arg_file.size() - 5, 4, ".xyz")) {
+				if (arg_file.size() < 5 || !(arg_file.compare(arg_file.size() - 4, 4, ".xyz") == 0)) {
 					throw std::invalid_argument(arg_file + " has wrong extension");
 				}
 				// Load file
