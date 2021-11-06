@@ -9,6 +9,8 @@
 #include <iostream>
 #include <string>
 
+#include "file-tools.h"
+
 /* ************************************************************************* */
 /*                            THE MAIN FUNCTION                              */
 /* ************************************************************************* */
@@ -25,16 +27,7 @@ int main(int argc, char *argv[]) {
 		for (int i = 1; i < argc; i++) {
 			try {
 				std::string arg_file = argv[i];
-				// Ensure the file has a correct extension
-				if (arg_file.size() < 5 || !(arg_file.compare(arg_file.size() - 4, 4, ".xyz") == 0)) {
-					throw std::invalid_argument(arg_file + " has wrong extension");
-				}
-				// Load file
-				std::ifstream xyz_file(arg_file.c_str());
-				// Ensure the file can be opened
-				if (!xyz_file) {
-					throw std::runtime_error(arg_file + " could not be opened");
-				}
+				std::ifstream xyz_file = load_xyz_file(arg_file);
 				// TODO : do some computations here
 				// Close file
 				xyz_file.close();
